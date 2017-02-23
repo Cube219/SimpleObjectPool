@@ -37,6 +37,10 @@ namespace Cube219.SimpleObjectPool
 			this.Invoke("Start", 0f);
 		}
 
+		////////////////////////////////////////////////////
+		///// Instantiate and Destory for PooledObject /////
+		///// (PooledObject전용 Instantiate와 Destory)  /////
+		////////////////////////////////////////////////////
 		public static PooledObject Instantiate(PooledObject original)
 		{
 			return PooledObject.Instantiate(original, Vector3.zero, Quaternion.identity, null);
