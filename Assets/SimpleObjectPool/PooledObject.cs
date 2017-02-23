@@ -11,7 +11,7 @@ namespace Cube219.SimpleObjectPool
 	/// (재사용 가능한 Object입니다.
 	/// ObjectPool에 의해 관리됩니다.)
 	/// </summary>
-	public class PooledObject : MonoBehaviour
+	public abstract class PooledObject : MonoBehaviour
 	{
 		public new bool enabled
 		{
