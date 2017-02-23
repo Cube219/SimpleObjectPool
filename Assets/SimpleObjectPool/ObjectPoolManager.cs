@@ -6,6 +6,7 @@ namespace Cube219.SimpleObjectPool
 {
 	/// <summary>
 	/// Manage ObjectPools.
+	/// (ObjectPool들을 관리합니다.)
 	/// </summary>
 	public class ObjectPoolManager
 	{
@@ -13,21 +14,22 @@ namespace Cube219.SimpleObjectPool
 
 		/// <summary>
 		/// Get the ObjectPool that manages such type.
+		/// (해당 타입을 관리하는 ObjectPool을 가져옵니다.)
 		/// </summary>
-		/// <summary xml:lang="ko">
-		/// </summary>
-		/// <param name="pooledObjectType">Type that the ObjectPool managed.</param>
-		/// <returns>A ObjectPool that manages that type.</returns>
-		public static ObjectPool GetPool(Type pooledObjectType)
+		/// <param name="pooledObjectType">Type that the ObjectPool managed. (ObjectPool이 관리하는 타입입니다.)</param>
+		/// <returns>A ObjectPool that manages that type. (해당 타입을 관리하는 ObjectPool입니다.)</returns>
+		public static ObjectPool GetPool(PooledObject pooledObject)
 		{
-			ObjectPool pool = pools_.Find(m => m.managedType == pooledObjectType);
+			ObjectPool pool = pools_.Find(m => m.managedType == pooledObject.GetType());
 
 			if (pool == null)
 			{
-				GameObject pool_gameObject = new GameObject(pooledObjectType.Name + " ObjectPool", typeof(ObjectPool));
+				GameObject pool_gameObject = new GameObject(pooledObject.GetType().Name + " ObjectPool", typeof(ObjectPool));
 
 				pool = pool_gameObject.GetComponent<ObjectPool>();
-				pool.Initialize(pooledObjectType);
+				pool.Initialize(pooledObject);
+
+				pools_.Add(pool);
 			}
 
 			return pool;
