@@ -41,6 +41,25 @@ namespace Cube219.SimpleObjectPool
 		///// Instantiate and Destory for PooledObject /////
 		///// (PooledObject전용 Instantiate와 Destory)  /////
 		////////////////////////////////////////////////////
+
+		// Generic Instantiate
+		public static new T Instantiate<T>(T original) where T : PooledObject
+		{
+			return PooledObject.Instantiate((PooledObject)original) as T;
+		}
+		public static new T Instantiate<T>(T original, Transform parent) where T : PooledObject
+		{
+			return PooledObject.Instantiate((PooledObject)original, parent) as T;
+		}
+		public static new T Instantiate<T>(T original, Vector3 position, Quaternion rotation) where T : PooledObject
+		{
+			return PooledObject.Instantiate((PooledObject)original, position, rotation) as T;
+		}
+		public static new T Instantiate<T>(T original, Vector3 position, Quaternion rotation, Transform parent) where T : PooledObject
+		{
+			return PooledObject.Instantiate((PooledObject)original, position, rotation, parent) as T;
+		}
+		// Normal Instantiate
 		public static PooledObject Instantiate(PooledObject original)
 		{
 			return PooledObject.Instantiate(original, Vector3.zero, Quaternion.identity, null);
